@@ -1,0 +1,106 @@
+# Получение списка новостей
+GET http://127.0.0.1:8000/api/v1/news/?page=1
+Content-Type: application/json
+
+###
+# Создание новости
+POST http://127.0.0.1:8000/api/v1/news/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkwMTkwODg2LCJpYXQiOjE2OTAxODcyODYsImp0aSI6ImQ1Njk5MGE4YjYxMzQ0NmI5NzI2MzhiMTU2NzMzOWM3IiwidXNlcl9pZCI6MX0.xAgZcqeREaMR88FHekrQo19s8nsDLYScKgq-TdkJgjE
+Content-Type: application/json
+
+{
+    
+    "title" : "Проект создан",
+    "description" : "Господа, свершилось!"
+}
+
+###
+# Обновление новости
+PATCH http://127.0.0.1:8000/api/v1/news/7/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg5OTU1MjU3LCJpYXQiOjE2ODk5NTE2NTcsImp0aSI6IjkyN2Q4ZTQ2N2E3ZTRlNGE5MzA1ODU5NDk0MGFhNjc5IiwidXNlcl9pZCI6Mzd9.h2HPPmkx_1v03SIAWsf6B1tbCLsjobmrWBMedWBWugA
+Content-Type: application/json
+
+{
+    "title": "update_from_request"
+}
+###
+# Удаление новости
+DELETE http://127.0.0.1:8000/api/v1/news/1/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkwMTE5NjQyLCJpYXQiOjE2OTAxMTYwNDIsImp0aSI6IjM5ZjI3MTY2NTcyOTQxYzA4NDAzNjI5ZDZiZmI5NDJhIiwidXNlcl9pZCI6MX0.gNyCMrgQlFyoujakiVlDVt9PiluvT1MQqBsjyN2YQvM
+Content-Type: application/json
+
+###
+# Создание коммента
+POST http://127.0.0.1:8000/api/v1/news/1/add_comment/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkwMTkwOTc2LCJpYXQiOjE2OTAxODczNzYsImp0aSI6ImFiNGFmZmJlZmU2ZjQ3ODY5NGU2OTk1ZjJmNWVlZTljIiwidXNlcl9pZCI6Mn0.wMH3vuFkxxCjAR5cev9Pvt7r7OkUcAVn0BEPG8vzhQg
+
+{
+    "description" : "Отличная новость, ты большой молодец!"
+}
+###
+# Удаление комента
+DELETE http://127.0.0.1:8000/api/v1/news/1/delete_comment/?comment_id=1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkwMTI3NDk3LCJpYXQiOjE2OTAxMjM4OTcsImp0aSI6IjE2ODExYjhmMTA0ZjQyMjk5NTc2NDI4NGEyMGUyNDhiIiwidXNlcl9pZCI6Mn0.gkAre_vOkKHjM8o1I8JNhQw9UPw7WOprKU-P4kl5vZA
+###
+# Обновление комента
+PATCH http://127.0.0.1:8000/api/v1/news/3/update_comment/
+Content-Type: application/json
+
+{
+    "description" : "xxxx"
+}
+
+###
+# фильтрация новостей по лайкам
+GET http://127.0.0.1:8000/api/v1/news/likes_order
+Content-Type: application/json
+
+###
+# фильтрация новостей по пользователям
+GET http://127.0.0.1:8000/api/v1/news/?autor=1
+Content-Type: application/json
+
+###
+# Создаем пользователя через jdoser
+POST http://127.0.0.1:8000/api/v1/auth/users/
+Content-Type: application/json
+
+{
+"username": "Anton",
+"password": "kotleta44489",
+"is_staff": "False"
+}
+###
+# Получаем токен JWT
+POST http://127.0.0.1:8000/api/v1/token/
+Content-Type: application/json
+
+{
+"username": "admin2",
+"password": "admin2"
+}
+###
+# Получаем токен JWT
+POST http://127.0.0.1:8000/api/v1/token/
+Content-Type: application/json
+
+{
+"username": "Anton",
+"password": "kotleta44489"
+}
+
+###
+# ставим или убираем лайк
+POST http://127.0.0.1:8000/api/v1/news/1/like_toggle/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkwMTkwOTc2LCJpYXQiOjE2OTAxODczNzYsImp0aSI6ImFiNGFmZmJlZmU2ZjQ3ODY5NGU2OTk1ZjJmNWVlZTljIiwidXNlcl9pZCI6Mn0.wMH3vuFkxxCjAR5cev9Pvt7r7OkUcAVn0BEPG8vzhQg
+
+###
+# Получаем новости которые лайкнули
+GET http://127.0.0.1:8000/api/v1/news/my_liked_news/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjkwMTg5NjIyLCJpYXQiOjE2OTAxODYwMjIsImp0aSI6ImY2ZDJkZTFkYTA0NjQ4ZDQ5ZTUwN2M3MzIxOTA5Njc2IiwidXNlcl9pZCI6MX0.v9UchvDsv8XQsfn0MUCjUB-ZUvL--15JJc84dW66ZZo
+
+###
